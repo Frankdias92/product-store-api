@@ -16,7 +16,11 @@ class ProductController {
                 user_id
             })          
             
-            const linkInsert = await knex('links').insert({urlProduct})
+            const linkInsert = await knex('links').insert({
+                urlProduct,
+                product_id,
+                user_id
+            })
 
             const tagsInsert = tags.map(name => {
                 return {
