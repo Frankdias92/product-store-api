@@ -1,7 +1,7 @@
 {
-  "name": "fundamentals-api",
+  "name": "database-server-store",
   "version": "1.0.0",
-  "description": "API developed in Rocketseat Explorer training",
+  "description": "API SERVER - STORE",
   "main": "index.js",
   "scripts": {
     "start": "node --watch src/server.js",
