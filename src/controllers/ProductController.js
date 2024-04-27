@@ -82,28 +82,28 @@ class ProductController {
                         'produtos.user_id',
                     ])
                     .where('produtos.user_id', user_id)
-                    .where('produtos.title', 'like', `%${title}%`)
+                    .whereLike('produtos.title', `%${title}%`)
                     .whereIn('name', filterTags)
                     .innerJoin('produtos', 'produtos.id', 'tags.product_id')
                     .orderBy('produtos.title')
-
-            } else {
-                products = await knex('produtos')
+                } else {
+                    products = await knex('produtos')
                     .where({ user_id })
-                    .where('title', 'like', `%${title}%`)
+                    .whereLike('title', `%${title}%`)
                     .orderBy('title')
-            }
-
-            const userTags = await knex('tags').where({ user_id })
-            const productsWithTags = products.map(product => {
-                const productTags = userTags.filter(tag => tag.product_id === product.id)
-
-                return {
-                    ...product,
-                    tags: productTags
                 }
-            })
-
+                
+                const userTags = await knex('tags').where({ user_id })
+                const productsWithTags = products.map(product => {
+                    const productTags = userTags.filter(tag => tag.product_id === product.id)
+                    
+                    return {
+                        ...product,
+                        tags: productTags
+                    }
+                })
+                
+                console.log('render ',productsWithTags)
             return res.json(productsWithTags)
         } catch (error) {
             console.error('Error fetching products:', error)
