@@ -33,7 +33,6 @@ class ProductController {
 
             return res.json({ message: 'Product created successfully' })
         } catch (error) {
-            console.error('Error creating product:', error)
             return res.status(500).json({ error: 'Internal server error' })
         }
     }
@@ -103,7 +102,6 @@ class ProductController {
                     }
                 })
                 
-                console.log('render ',productsWithTags)
             return res.json(productsWithTags)
         } catch (error) {
             console.error('Error fetching products:', error)
