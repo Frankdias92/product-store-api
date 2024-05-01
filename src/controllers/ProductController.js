@@ -3,7 +3,7 @@ const knex = require('../database/knex')
 class ProductController {
     async create(req, res) {
         try {
-            const { title, description, price, urlProduct, tags } = req.body
+            const { title, description, price, urlProduct, tags, productIMG } = req.body
             const user_id = req.user.id
             console.log('tags: ', tags)
 
@@ -13,8 +13,9 @@ class ProductController {
                 description,
                 price,
                 urlProduct,
+                productIMG,
                 user_id
-            })          
+            })
             
             const linkInsert = await knex('links').insert({
                 urlProduct,
