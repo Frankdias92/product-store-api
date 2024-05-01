@@ -1,12 +1,11 @@
 const knex = require('../database/knex')
-const DiskStorage = require('../providers/DiskStorage')
 
 class ProductController {
     async create(req, res) {
         try {
             const { title, description, price, urlProduct, tags, productIMG } = req.body
             const user_id = req.user.id
-            console.log(productIMG)
+            
 
             const [product_id] = await knex('produtos')
             .insert({

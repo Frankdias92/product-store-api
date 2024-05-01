@@ -1,6 +1,5 @@
 require('express-async-errors')
 
-const multer = require('multer')
 const migrationsRun = require('./database/sqlite/migrations')
 const uploadConfig = require('./configs/upload')
 const AppError = require('./utils/AppError')
@@ -18,22 +17,8 @@ app.use(cors())
 app.use(express.json())
 
 
-const storage = multer.memoryStorage()
-const upload = multer({ storage: storage }).single('productIMG')
-
+app.use('/upload', express.static(uploadConfig.UPLOADS_FOLDER))
 app.use('/files', express.static(uploadConfig.UPLOADS_FOLDER))
-
-app.use((req, res, next) => {
-    upload(req, res, function(err) {
-        if (err instanceof multer.MulterError) {
-            return res.status(400).json({ error: 'Multer error' })
-        } else if (err) {
-            return res.status(500).json({ error: 'Internal server error' })
-        }
-        next()
-    })
-})
-
 
 
 // access to routes on file index.js
