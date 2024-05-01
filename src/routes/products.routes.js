@@ -16,4 +16,5 @@ productsRouters.get('/:id', productsController.show )
 productsRouters.delete('/:id', productsController.delete)
 productsRouters.get('/', productsController.index)
 
+
 module.exports = productsRouters

@@ -4,6 +4,7 @@ const usersRouters = require('./users.routes')
 const productsRouters = require('./products.routes')
 const tagsRouters = require('./tags.routes')
 const sessionsRouters = require('./sessions.routes')
+const allProductsRouters = require('./allProducts.routes')
 
 
 const routes = Router()
@@ -14,5 +15,6 @@ routes.use('/sessions', sessionsRouters)
 routes.use('/products', productsRouters)
 routes.use('/tags', tagsRouters)
 
+routes.use('/allproducts', allProductsRouters)
 
 module.exports = routes
