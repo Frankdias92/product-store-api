@@ -1,4 +1,5 @@
 const knex = require('../database/knex')
+const DiskStorage = require('../providers/DiskStorage')
 
 class AllProductsController {
     async index(req, res) {
@@ -10,9 +11,9 @@ class AllProductsController {
         try {
             const products = await knex('produtos')
             const userTags = await knex('tags')
-            // const user_id = req.user.id
 
-            
+
+            console.log('passei ', products)
             const productsWithTags = products.map(product => {
                 const productTags = userTags.filter(tag => tag.product_id === product.id)
                 

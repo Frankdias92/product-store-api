@@ -1,17 +1,16 @@
 require('express-async-errors')
 
+const multer = require('multer')
 const migrationsRun = require('./database/sqlite/migrations')
 const uploadConfig = require('./configs/upload')
-
 const AppError = require('./utils/AppError')
 const express = require('express')
 const routes = require('./routes')
-
 const cors = require('cors')
+
 
 // access to database SQL
 migrationsRun()
-
 
 const app = express()
 
@@ -19,7 +18,23 @@ app.use(cors())
 app.use(express.json())
 
 
+const storage = multer.memoryStorage()
+const upload = multer({ storage: storage }).single('productIMG')
+
 app.use('/files', express.static(uploadConfig.UPLOADS_FOLDER))
+
+app.use((req, res, next) => {
+    upload(req, res, function(err) {
+        if (err instanceof multer.MulterError) {
+            return res.status(400).json({ error: 'Multer error' })
+        } else if (err) {
+            return res.status(500).json({ error: 'Internal server error' })
+        }
+        next()
+    })
+})
+
+
 
 // access to routes on file index.js
 app.use(routes)
@@ -41,44 +56,5 @@ app.use(( error, req, res, next ) => {
 
 
 
-
-
-
-
-
-
-
-
-
 const PORT = 3333
 app.listen(PORT, () => console.log(`Server is running on address: http://localhost:${PORT}`))
-/* 
-app.get('/', (req, res) => {
-    res.send('Hello, word!')
-})
-
-// Params are require on every route!
-// add new route message  |  Route Params
-app.get('/message/:id/:user', (req, res) => {
-    const { id, user } = req.params
-    
-    res.send(`
-        Message Id: ${id},
-        User Id: ${user}.
-    `)
-})
-
-// Route Query
-app.get('/users', (req, res) => {
-    const { page, limit } = req.params
-
-    res.send(`Page: ${page}, Display: ${limit}`)
-})
-
-
-// Route POST
-app.post('/users', (req,res) => {
-    const { name, email, comment } = req.body
-
-    res.json({ name, email, comment })
-}) */
