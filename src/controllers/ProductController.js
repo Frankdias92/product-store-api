@@ -77,31 +77,43 @@ class ProductController {
 
     async index(req, res) {
         try {
-            const { title, tags } = req.query;
-            const user_id = req.user.id;
-    
-            let productsQuery = knex('produtos')
-                .where('produtos.user_id', user_id)
-                .where('produtos.title', 'like', `%${title}%`)
-                .orderBy('produtos.title');
-    
+            const { title, tags } = req.query
+            const user_id = req.user.id
+            let products
             if (tags) {
-                const filterTags = tags.split(',').map(tag => tag.trim());
-                productsQuery = productsQuery
-                    .join('tags', 'produtos.id', 'tags.product_id')
-                    .whereIn('tags.name', filterTags);
-            }
-    
-            const productsWithTags = await productsQuery
-                .select('produtos.id', 'produtos.title', 'produtos.user_id', 'tags.name as tag')
-                .leftJoin('tags', 'produtos.id', 'tags.product_id')
-                .orderBy('produtos.title')
-                .groupBy('produtos.id');
-    
-            return res.json(productsWithTags);
+                const filterTags = tags.split(',').map(tag => tag.trim())
+                products = await knex('tags')
+                    .select([
+                        'produtos.id',
+                        'produtos.title',
+                        'produtos.user_id',
+                    ])
+                    .where('produtos.user_id', user_id)
+                    .whereLike('produtos.title', `%${title}%`)
+                    .whereIn('name', filterTags)
+                    .innerJoin('produtos', 'produtos.id', 'tags.product_id')
+                    .orderBy('produtos.title')
+                } else {
+                    products = await knex('produtos')
+                    .where({ user_id })
+                    .whereLike('title', `%${title}%`)
+                    .orderBy('title')
+                }
+                
+                const userTags = await knex('tags').where({ user_id })
+                const productsWithTags = products.map(product => {
+                    const productTags = userTags.filter(tag => tag.product_id === product.id)
+                    
+                    return {
+                        ...product,
+                        tags: productTags
+                    }
+                })
+                
+            return res.json(productsWithTags)
         } catch (error) {
-            console.error('Error fetching products:', error);
-            return res.status(500).json({ error: 'Internal server error' });
+            console.error('Error fetching products:', error)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 
