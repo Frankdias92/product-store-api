@@ -1,5 +1,7 @@
+const { diskStorage } = require('multer')
 const knex = require('../database/knex')
 const fs = require('fs/promises')
+const DiskStorage = require('../providers/DiskStorage')
 
 
 class ProductController {
@@ -14,7 +16,9 @@ class ProductController {
             }
 
             const productIMG = req.file.filename
-            
+            const diskStorage = new DiskStorage()
+
+            const filename = await diskStorage.saveFile(productIMG)
 
             const [product_id] = await knex('produtos')
             .insert({
@@ -22,7 +26,8 @@ class ProductController {
                 description,
                 price,
                 urlProduct,
-                productIMG,
+                category,
+                productIMG: filename,
                 user_id
             })
             
