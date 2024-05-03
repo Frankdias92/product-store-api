@@ -33,6 +33,7 @@ class AllProductsController {
                     'produtos.category'
                 ])
                 .whereLike('productos.category', `%${category}%`)
+                .orderBy('title')
 
 
             console.log('passei ', products)
@@ -46,6 +47,30 @@ class AllProductsController {
             })
                 
             const userTags = await knex('tags').where({ user_id })
+            const productsWithTags = products.map(product => {
+                const productTags = userTags.filter(tag => tag.product_id === product.id)
+                
+                return {
+                    ...product,
+                    tags: productTags
+                }
+            })
+                
+            return res.json(productsWithTags)
+        } catch (error) {
+            console.error('Error fetching products:', error)
+            return res.status(500).json({ error: 'Internal server error' })
+        }
+    }
+
+    async show(req, res) {
+        const { id } = req.params
+        try {
+            const products = await knex('produtos').where({ id })
+            const userTags = await knex('tags')
+
+
+            console.log('render product Id ', products)
             const productsWithTags = products.map(product => {
                 const productTags = userTags.filter(tag => tag.product_id === product.id)
                 

@@ -7,5 +7,6 @@ const allProductsController = new AllProductsController()
 
 allProductsRouters.get('/', allProductsController.index)
 allProductsRouters.get('/', allProductsController.category)
+allProductsRouters.get('/:id', allProductsController.show)
 
 module.exports = allProductsRouters
