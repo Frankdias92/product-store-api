@@ -7,7 +7,7 @@ const DiskStorage = require('../providers/DiskStorage')
 class ProductController {
     async create(req, res) {
         try {
-            const { title, description, price, urlProduct, tags } = req.body
+            const { title, description, price, urlProduct, tags, category } = req.body
             const user_id = req.user.id
             
             // Check if there's a file uploaded
