@@ -1,57 +1,7 @@
 
 
-SERVIDOR-STORE
-├── src
-│  ├── configs
-│  │  ├── utils
-│  │  └── server.js 
-│  ├── controllers
-│  │  ├── AllProductsController.js
-│  │  ├── ProductController.js
-│  │  ├── SessionsController.js
-│  │  ├── TagsController.js
-│  │  ├── UserAvatarController.js
-│  │  └── UserController.js
-│  ├── database
-│  │  ├── knex
-│  │  │  ├── migrations
-│  │  │  │  ├── 20240320202727_createProducts.js
-│  │  │  │  ├── 20240321003608_createTags.js
-│  │  │  │  └── 20240321004040_createLinks.js
-│  │  │  └── index.js
-│  │  ├── sqlite
-│  │  │  ├── migrations
-│  │  │  │  ├── createUsers.js
-│  │  │  │  └── index.js
-│  │  │  └── index.js
-│  │  └── database.db
-│  ├── middlewares
-│  │  └── ensureAuthenticated.js
-│  ├── providers
-│  │  └── DiskStorage.js
-│  ├── routes
-│  │  ├── allProducts.routes.js
-│  │  ├── index.js
-│  │  ├── products.routes.js
-│  │  ├── sessions.routes.js
-│  │  ├── tags.routes.js
-│  │  └── users.routes.js
-│  ├── utils
-│  │  └── AppError.js
-│  └── server.js
-├── tmp
-│  ├── uploads
-│  │  └── ...
-│  └── uploads
-├── knexfile.js
-├── package-lock.json
-├── package.json
-└── README.md
 
-
-
-
-Welcome!
+# Server-Store API Documentation
 
 This comprehensive guide serves as your one-stop resource for exploring and utilizing the Server-Store API effectively. Whether you're a seasoned developer or just getting started, this documentation equips you with the knowledge to integrate the API seamlessly into your projects.
 
@@ -59,9 +9,61 @@ What is Server-Store?
 
 Server-Store is a robust API designed to simplify the management of products, users, and authentication functionalities within an e-commerce application.
 
----
 
-# Server-Store API Documentation
+
+# 
+
+<details>
+    <summary><strong>Structure</strong></summary>
+
+    SERVIDOR-STORE
+    ├── src
+    │  ├── configs
+    │  │  ├── utils
+    │  │  └── server.js 
+    │  ├── controllers
+    │  │  ├── AllProductsController.js
+    │  │  ├── ProductController.js
+    │  │  ├── SessionsController.js
+    │  │  ├── TagsController.js
+    │  │  ├── UserAvatarController.js
+    │  │  └── UserController.js
+    │  ├── database
+    │  │  ├── knex
+    │  │  │  ├── migrations
+    │  │  │  │  ├── 20240320202727_createProducts.js
+    │  │  │  │  ├── 20240321003608_createTags.js
+    │  │  │  │  └── 20240321004040_createLinks.js
+    │  │  │  └── index.js
+    │  │  ├── sqlite
+    │  │  │  ├── migrations
+    │  │  │  │  ├── createUsers.js
+    │  │  │  │  └── index.js
+    │  │  │  └── index.js
+    │  │  └── database.db
+    │  ├── middlewares
+    │  │  └── ensureAuthenticated.js
+    │  ├── providers
+    │  │  └── DiskStorage.js
+    │  ├── routes
+    │  │  ├── allProducts.routes.js
+    │  │  ├── index.js
+    │  │  ├── products.routes.js
+    │  │  ├── sessions.routes.js
+    │  │  ├── tags.routes.js
+    │  │  └── users.routes.js
+    │  ├── utils
+    │  │  └── AppError.js
+    │  └── server.js
+    ├── tmp
+    │  ├── uploads
+    │  │  └── ...
+    │  └── uploads
+    ├── knexfile.js
+    ├── package-lock.json
+    ├── package.json
+    └── README.md
+</details>
 
 ## Introduction
 
@@ -72,7 +74,7 @@ Welcome to the Server-Store API documentation. This API allows for the managemen
 The base URL for all API endpoints is:
 
 ```
-https://localhost:3333
+https://localhost:3333  // require deploy yet!
 ```
 
 ## Authentication
