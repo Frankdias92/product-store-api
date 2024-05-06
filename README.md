@@ -51,29 +51,35 @@ SERVIDOR-STORE
 
 
 
-Claro! Vamos montar a documentação completa da API Server-Store. Vou estruturar a documentação em seções para abranger todos os aspectos importantes da API, incluindo endpoints, métodos, parâmetros, autenticação e muito mais. Vamos começar:
+Welcome!
+
+This comprehensive guide serves as your one-stop resource for exploring and utilizing the Server-Store API effectively. Whether you're a seasoned developer or just getting started, this documentation equips you with the knowledge to integrate the API seamlessly into your projects.
+
+What is Server-Store?
+
+Server-Store is a robust API designed to simplify the management of products, users, and authentication functionalities within an e-commerce application.
 
 ---
 
-# Documentação da API Server-Store
+# Server-Store API Documentation
 
-## Introdução
+## Introduction
 
-Bem-vindo à documentação da API Server-Store. Esta API permite o gerenciamento de produtos, usuários e autenticação para uma loja virtual.
+Welcome to the Server-Store API documentation. This API allows for the management of products, users, and authentication for an online store.
 
 ## Base URL
 
-A URL base para todos os endpoints da API é:
+The base URL for all API endpoints is:
 
 ```
-https://api.server-store.com
+https://localhost:3333
 ```
 
-## Autenticação
+## Authentication
 
-A API utiliza autenticação baseada em tokens JWT (JSON Web Tokens) para garantir a segurança das operações. Para acessar endpoints protegidos, é necessário incluir o token JWT no cabeçalho de autorização da requisição.
+The API utilizes JWT (JSON Web Tokens) based authentication to ensure the security of operations. To access protected endpoints, it is necessary to include the JWT token in the request authorization header.
 
-### Registro de Usuário
+### User Registration
 
 #### Endpoint
 
@@ -81,17 +87,17 @@ A API utiliza autenticação baseada em tokens JWT (JSON Web Tokens) para garant
 POST /register
 ```
 
-#### Descrição
+#### Description
 
-Registra um novo usuário na API.
+Registers a new user in the API.
 
-#### Parâmetros da Requisição
+#### Request Parameters
 
-- `name`: Nome do usuário (string)
-- `email`: Endereço de e-mail do usuário (string)
-- `password`: Senha do usuário (string)
+- `name`: User's name (string)
+- `email`: User's email address (string)
+- `password`: User's password (string)
 
-#### Exemplo de Requisição
+#### Request Example
 
 ```json
 {
@@ -101,7 +107,7 @@ Registra um novo usuário na API.
 }
 ```
 
-#### Resposta de Sucesso
+#### Success Response
 
 Status: 201 Created
 
@@ -111,7 +117,7 @@ Status: 201 Created
 }
 ```
 
-#### Resposta de Erro
+#### Error Response
 
 Status: 400 Bad Request
 
@@ -121,7 +127,7 @@ Status: 400 Bad Request
 }
 ```
 
-### Autenticação de Usuário
+### User Authentication
 
 #### Endpoint
 
@@ -129,16 +135,16 @@ Status: 400 Bad Request
 POST /login
 ```
 
-#### Descrição
+#### Description
 
-Autentica um usuário na API e retorna um token JWT para acesso aos endpoints protegidos.
+Authenticates a user in the API and returns a JWT token for access to protected endpoints.
 
-#### Parâmetros da Requisição
+#### Request Parameters
 
-- `email`: Endereço de e-mail do usuário (string)
-- `password`: Senha do usuário (string)
+- `email`: User's email address (string)
+- `password`: User's password (string)
 
-#### Exemplo de Requisição
+#### Request Example
 
 ```json
 {
@@ -147,7 +153,7 @@ Autentica um usuário na API e retorna um token JWT para acesso aos endpoints pr
 }
 ```
 
-#### Resposta de Sucesso
+#### Success Response
 
 Status: 200 OK
 
@@ -162,7 +168,7 @@ Status: 200 OK
 }
 ```
 
-#### Resposta de Erro
+#### Error Response
 
 Status: 401 Unauthorized
 
@@ -172,44 +178,43 @@ Status: 401 Unauthorized
 }
 ```
 
-## Recursos Disponíveis
+## Available Resources
 
-A API Server-Store oferece os seguintes recursos:
+The Server-Store API offers the following resources:
 
-### Usuários
-
-#### Endpoints
-
-- **Registro de Usuário:** `POST /register`
-- **Autenticação de Usuário:** `POST /login`
-
-### Produtos
+### Users
 
 #### Endpoints
 
-- **Listar Produtos:** `GET /products`
-- **Detalhes do Produto:** `GET /products/:id`
-- **Criar Produto:** `POST /products`
-- **Atualizar Produto:** `PUT /products/:id`
-- **Excluir Produto:** `DELETE /products/:id`
+- **User Registration:** `POST /register`
+- **User Authentication:** `POST /login`
 
-
-## Recursos Disponíveis (Continuação)
-
-### Usuários
+### Products
 
 #### Endpoints
 
-- **Registro de Usuário:** `POST /register`
-  - Registra um novo usuário na API.
+- **List Products:** `GET /products`
+- **Product Details:** `GET /products/:id`
+- **Create Product:** `POST /products`
+- **Update Product:** `PUT /products/:id`
+- **Delete Product:** `DELETE /products/:id`
 
-  ##### Parâmetros da Requisição
+## Continued Available Resources
 
-  - `name`: Nome do usuário (string)
-  - `email`: Endereço de e-mail do usuário (string)
-  - `password`: Senha do usuário (string)
+### Users
 
-  ##### Exemplo de Requisição
+#### Endpoints
+
+- **User Registration:** `POST /register`
+  - Registers a new user in the API.
+
+  ##### Request Parameters
+
+  - `name`: User's name (string)
+  - `email`: User's email address (string)
+  - `password`: User's password (string)
+
+  ##### Request Example
 
   ```json
   {
@@ -219,7 +224,7 @@ A API Server-Store oferece os seguintes recursos:
   }
   ```
 
-  ##### Resposta de Sucesso
+  ##### Success Response
 
   Status: 201 Created
 
@@ -229,7 +234,7 @@ A API Server-Store oferece os seguintes recursos:
   }
   ```
 
-  ##### Resposta de Erro
+  ##### Error Response
 
   Status: 400 Bad Request
 
@@ -239,15 +244,15 @@ A API Server-Store oferece os seguintes recursos:
   }
   ```
 
-- **Autenticação de Usuário:** `POST /login`
-  - Autentica um usuário na API e retorna um token JWT para acesso aos endpoints protegidos.
+- **User Authentication:** `POST /login`
+  - Authenticates a user in the API and returns a JWT token for access to protected endpoints.
 
-  ##### Parâmetros da Requisição
+  ##### Request Parameters
 
-  - `email`: Endereço de e-mail do usuário (string)
-  - `password`: Senha do usuário (string)
+  - `email`: User's email address (string)
+  - `password`: User's password (string)
 
-  ##### Exemplo de Requisição
+  ##### Request Example
 
   ```json
   {
@@ -256,7 +261,7 @@ A API Server-Store oferece os seguintes recursos:
   }
   ```
 
-  ##### Resposta de Sucesso
+  ##### Success Response
 
   Status: 200 OK
 
@@ -271,7 +276,7 @@ A API Server-Store oferece os seguintes recursos:
   }
   ```
 
-  ##### Resposta de Erro
+  ##### Error Response
 
   Status: 401 Unauthorized
 
@@ -282,26 +287,24 @@ A API Server-Store oferece os seguintes recursos:
   ```
 
 
-Obrigado por fornecer os detalhes adicionais. Agora, com base nas informações fornecidas, podemos atualizar a documentação da API para incluir os detalhes sobre os produtos, incluindo as imagens dos produtos, as tags associadas a eles e os links relacionados. Vou incorporar essas informações na documentação. Aqui está o arquivo atualizado:
-
-### Produtos
+### Products
 
 #### Endpoints
 
-- **Listar Todos os Produtos:** `GET /products`
-  - Retorna uma lista de todos os produtos disponíveis na loja, incluindo suas informações, tags e links associados.
+- **List All Products:** `GET /products`
+  - Returns a list of all products available in the store, including their details, tags, and associated links.
 
-  ##### Parâmetros da Requisição
+  ##### Request Parameters
 
-  Nenhum.
+  None.
 
-  ##### Exemplo de Requisição
+  ##### Request Example
 
   ```
   GET /products
   ```
 
-  ##### Resposta de Sucesso
+  ##### Success Response
 
   Status: 200 OK
 
@@ -336,20 +339,20 @@ Obrigado por fornecer os detalhes adicionais. Agora, com base nas informações 
   ]
   ```
 
-- **Detalhes do Produto:** `GET /products/:id`
-  - Retorna os detalhes de um produto específico com base no ID fornecido, incluindo suas informações, tags e links associados.
+- **Product Details:** `GET /products/:id`
+  - Returns the details of a specific product based on the provided ID, including its details, tags, and associated links.
 
-  ##### Parâmetros da Requisição
+  ##### Request Parameters
 
-  - `id`: ID do produto (integer)
+  - `id`: Product ID (integer)
 
-  ##### Exemplo de Requisição
+  ##### Request Example
 
   ```
   GET /products/1
   ```
 
-  ##### Resposta de Sucesso
+  ##### Success Response
 
   Status: 200 OK
 
@@ -369,7 +372,7 @@ Obrigado por fornecer os detalhes adicionais. Agora, com base nas informações 
   }
   ```
 
-  ##### Resposta de Erro
+  ##### Error Response
 
   Status: 404 Not Found
 
@@ -379,20 +382,20 @@ Obrigado por fornecer os detalhes adicionais. Agora, com base nas informações 
   }
   ```
 
-- **Criar Produto:** `POST /products`
-  - Cria um novo produto na loja.
+- **Create Product:** `POST /products`
+  - Creates a new product in the store.
 
-  ##### Parâmetros da Requisição
+  ##### Request Parameters
 
-  - `title`: Título do produto (string)
-  - `description`: Descrição do produto (string)
-  - `price`: Preço do produto (number)
-  - `urlProduct`: URL do produto (string)
-  - `productIMG`: Imagem do produto (file)
-  - `category`: Categoria do produto (string)
-  - `tags`: Array de tags associadas ao produto (array de strings)
+  - `title`: Product title (string)
+  - `description`: Product description (string)
+  - `price`: Product price (number)
+  - `urlProduct`: Product URL (string)
+  - `productIMG`: Product image (file)
+  - `category`: Product category (string)
+  - `tags`: Array of tags associated with the product (array of strings)
 
-  ##### Exemplo de Requisição
+  ##### Request Example
 
   ```json
   {
@@ -400,13 +403,13 @@ Obrigado por fornecer os detalhes adicionais. Agora, com base nas informações 
     "description": "Description of the new product",
     "price": 199.99,
     "urlProduct": "http://example.com/new-product",
-    "productIMG": (imagem do produto),
+    "productIMG": (product image),
     "category": "Category",
     "tags": ["Tag 1", "Tag 2"]
   }
   ```
 
-  ##### Resposta de Sucesso
+  ##### Success Response
 
   Status: 201 Created
 
@@ -416,33 +419,33 @@ Obrigado por fornecer os detalhes adicionais. Agora, com base nas informações 
   }
   ```
 
-- **Atualizar Produto:** `PUT /products/:id`
-  - Atualiza as informações de um produto existente na loja com base no ID fornecido.
+- **Update Product:** `PUT /products/:id`
+  - Updates the information of an existing product in the store based on the provided ID.
 
-  ##### Parâmetros da Requisição
+  ##### Request Parameters
 
-  - `id`: ID do produto (integer)
-  - `title`: Título do produto (string, opcional)
-  - `description`: Descrição do produto (string, opcional)
-  - `price`: Preço do produto (number, opcional)
-  - `urlProduct`: URL do produto (string, opcional)
-  - `productIMG`: Imagem do produto (file, opcional)
-  - `category`: Categoria do produto (string, opcional)
-  - `tags`: Array de tags associadas ao produto (array de strings, opcional)
+  - `id`: Product ID (integer)
+  - `title`: Product title (string, optional)
+  - `description`: Product description (string, optional)
+  - `price`: Product price (number, optional)
+  - `urlProduct`: Product URL (string, optional)
+  - `productIMG`: Product image (file, optional)
+  - `category`: Product category (string, optional)
+  - `tags`: Array of tags associated with the product (array of strings, optional)
 
-  ##### Exemplo de Requisição
+  ##### Request Example
 
   ```json
   {
     "title": "New product",
     "description": "New description of the product",
     "price": 249.99,
-    "urlProduct": "https://www.exemple.com",
+    "urlProduct": "https://www.example.com",
     "tags": ["Tag 1", "Tag 2", "Tag 3"]
   }
   ```
 
-  ##### Resposta de Sucesso
+  ##### Success Response
 
   Status: 200 OK
 
@@ -452,7 +455,7 @@ Obrigado por fornecer os detalhes adicionais. Agora, com base nas informações 
   }
   ```
 
-  ##### Resposta de Erro
+  ##### Error Response
 
   Status: 404 Not Found
 
@@ -462,20 +465,20 @@ Obrigado por fornecer os detalhes adicionais. Agora, com base nas informações 
   }
   ```
 
-- **Excluir Produto:** `DELETE /products/:id`
-  - Exclui um produto da loja com base no ID fornecido.
+- **Delete Product:** `DELETE /products/:id`
+  - Deletes a product from the store based on the provided ID.
 
-  ##### Parâmetros da Requisição
+  ##### Request Parameters
 
-  - `id`: ID do produto (integer)
+  - `id`: Product ID (integer)
 
-  ##### Exemplo de Requisição
+  ##### Request Example
 
   ```
   DELETE /products/1
   ```
 
-  ##### Resposta de Sucesso
+  ##### Success Response
 
   Status: 200 OK
 
@@ -485,7 +488,7 @@ Obrigado por fornecer os detalhes adicionais. Agora, com base nas informações 
   }
   ```
 
-  ##### Resposta de Erro
+  ##### Error Response
 
   Status: 404 Not Found
 
@@ -494,5 +497,3 @@ Obrigado por fornecer os detalhes adicionais. Agora, com base nas informações 
     "error": "Product not found"
   }
   ```
-
-Com essas atualizações, a documentação agora reflete com precisão os detalhes dos produtos, incluindo as imagens, tags e links associados.
