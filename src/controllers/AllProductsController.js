@@ -7,8 +7,6 @@ class AllProductsController {
             const products = await knex('produtos')
             const userTags = await knex('tags')
 
-
-            console.log('passei ', products)
             const productsWithTags = products.map(product => {
                 const productTags = userTags.filter(tag => tag.product_id === product.id)
                 
@@ -35,8 +33,6 @@ class AllProductsController {
                 .whereLike('productos.category', `%${category}%`)
                 .orderBy('title')
 
-
-            console.log('passei ', products)
             productsWithTags = products.map(product => {
                 const productTags = userTags.filter(tag => tag.product_id === product.id)
                 
@@ -69,8 +65,6 @@ class AllProductsController {
             const products = await knex('produtos').where({ id })
             const userTags = await knex('tags')
 
-
-            console.log('render product Id ', products)
             const productsWithTags = products.map(product => {
                 const productTags = userTags.filter(tag => tag.product_id === product.id)
                 
