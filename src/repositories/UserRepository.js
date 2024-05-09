@@ -19,3 +19,5 @@ class UserRepository {
         return { id: userId }
     }
 }
+
+module.exports = UserRepository

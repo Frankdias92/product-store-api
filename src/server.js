@@ -28,10 +28,10 @@ app.use(routes)
 
 app.use(( error, req, res, next ) => {
     if (error instanceof AppError) {
-        return res.status(error.statusCode.json({
+        return res.status(error.statusCode).json({
             status: 'error',
             message: error.message
-        }))
+        })
     }
     console.error(error)
 
