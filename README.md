@@ -15,7 +15,7 @@ Server-Store is a robust API designed to simplify the management of products, us
 
 <details>
     <summary><strong>Structure</strong></summary>
-
+    
     SERVIDOR-STORE
     ├── src
     │  ├── configs
@@ -45,6 +45,9 @@ Server-Store is a robust API designed to simplify the management of products, us
     │  │  └── ensureAuthenticated.js
     │  ├── providers
     │  │  └── DiskStorage.js
+    │  ├── repositories
+    │  │  ├── UserRepository.js
+    │  │  └── UserRepositoryInMemory.js
     │  ├── routes
     │  │  ├── allProducts.routes.js
     │  │  ├── index.js
@@ -52,6 +55,9 @@ Server-Store is a robust API designed to simplify the management of products, us
     │  │  ├── sessions.routes.js
     │  │  ├── tags.routes.js
     │  │  └── users.routes.js
+    │  ├── services
+    │  │  ├── UserCreateService.js
+    │  │  └── userCreateService.spec.js
     │  ├── utils
     │  │  └── AppError.js
     │  └── server.js
@@ -63,6 +69,7 @@ Server-Store is a robust API designed to simplify the management of products, us
     ├── package-lock.json
     ├── package.json
     └── README.md
+
 </details>
 
 ## Introduction
@@ -74,7 +81,7 @@ Welcome to the Server-Store API documentation. This API allows for the managemen
 The base URL for all API endpoints is:
 
 ```
-https://localhost:3333  // require deploy yet!
+https://localhost:3333
 ```
 
 ## Authentication
